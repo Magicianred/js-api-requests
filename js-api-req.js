@@ -1,5 +1,5 @@
   // https://www.javascripture.com
-  // generate req = POSTMAN -> code
+  // generate req = POSTMAN -> code -> javascript
   
   // Parâmetros
   let params = {

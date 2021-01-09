@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="0">
+        <form id="api" method="post">
+            <tr>
+                <td>
+                    <input type="text" name="name" placeholder="Digite seu nome">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="job" placeholder="Digite seu emprego">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Enviar</button>
+                </td>
+            </tr>
+            
+        </form>
+    </table>
+
+    <div id="response"></div>
+
+</body>
+</html>
+
+<script>
+
+    let formInput = {
+        form: document.querySelector('#api'),
+        name: document.querySelector('input[name="name"]'),
+        job: document.querySelector('input[name="job"]'),
+        submit: document.querySelector('button')
+    }
+    
+
+     // Parâmetros
+     let params = {
+        url: "https://reqres.in/api/users",
+      }
+
+      // response
+      formInput.form.onsubmit = function(e){
+        e.preventDefault(); // Previne redirecionamento
+
+        // Requisição POST
+        var request = new Request(params.url, {
+        method: 'POST',
+        body: `{ "name": "${formInput.name.value}", "job": "${formInput.job.value}" }`
+        });
+
+
+        request.json().then(function(response) { 
+            document.querySelector('#response').innerHTML = `
+            <h3>Formulário Enviado!</h3>
+            Nome: ${response.name} <br>
+            Emprego: ${response.job}
+            `
+          });
+      }
+      
+    
+</script>
